@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+}
+
+.cell {
+  font-size: 2rem;
+  font-weight: bold;
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+.number {
+  position: relative;
+  bottom: 10%;
+}

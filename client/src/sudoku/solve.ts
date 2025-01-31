@@ -32,7 +32,7 @@ function isSafe(grid: Grid, row: number, col: number, n: number): boolean {
   return true;
 }
 
-function solveSudoku(grid: number[][]) {
+function solveSudoku(grid: number[][], setGrid: any) {
   let row = -1;
   let col = -1;
   let isEmpty = true;
@@ -57,7 +57,7 @@ function solveSudoku(grid: number[][]) {
   for (let n = 1; n <= 9; n++) {
     if (isSafe(grid, row, col, n)) {
       grid[row][col] = n;
-      if (solveSudoku(grid)) {
+      if (solveSudoku(grid, setGrid)) {
         return true;
       } else {
         grid[row][col] = 0;
@@ -67,8 +67,13 @@ function solveSudoku(grid: number[][]) {
   return false;
 }
 
-export default function solve(grid: number[][]): number[][] {
+export default async function solve(
+  grid: number[][],
+  setGrid: any,
+): Promise<number[][]> {
   const gridCopy = grid.map((row) => row.map((v) => v));
-  solveSudoku(gridCopy);
+  solveSudoku(gridCopy, setGrid);
+  console.log(gridCopy)
+  setGrid(gridCopy);
   return gridCopy;
 }
